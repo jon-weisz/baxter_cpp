@@ -33,7 +33,6 @@ THIS README IS SPECIFIC FOR GROOVY, SEE hydro-devel BRANCH FOR HYDRO INSTRUCTION
     git clone git@github.com:davetcoleman/baxter_common.git -b dual_parallel_grippers
     git clone git@github.com:davetcoleman/block_grasp_generator.git -b groovy-devel
     git clone git@github.com:ros-controls/ros_controllers -b velocity_position_controller
-    git clone git@github.com:ros-simulation/gazebo_ros_pkgs -b ros_control_plugin_header
 ```
 
 * Install dependencies
