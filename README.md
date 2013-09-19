@@ -1,16 +1,28 @@
 baxter
 ======
 
-Unofficial Baxter packages that add-on to the Rethink SDK. Currently it contains Gazebo simulation and pick and place MoveIt code for Baxter
+Unofficial Baxter packages that add-on to the Rethink SDK. It is entirely written in C++ and currently contains Gazebo simulation and pick and place MoveIt code for Baxter. 
 
-THIS README IS SPECIFIC FOR GROOVY, SEE hydro-devel BRANCH FOR HYDRO INSTRUCTIONS
+The groovy-devel branch is no longer being actively developed but on going development continues in the hydro-devel branch by [Dave Coleman](http://davetcoleman.com). 
+
+![alt tag](https://raw.github.com/davetcoleman/baxter/hydro-devel/baxter_pick_place/resource/BaxterPickPlace.png)
+
+**Note:** This is the ROS Groovy readme version. See hydro-devel branch for ROS Groovy instructions.
 
 ## Prequisites
 
- * ROS Groovy
- * Access to the private Rethink [sdk-examples](https://github.com/RethinkRobotics/sdk-examples) repository - we are using the baxter_interface and head_control packages from the SDK
+ * A Baxter with dual parallel grippers, or the desire to see one in simulation
+ * [ROS Groovy](http://wiki.ros.org/groovy/Installation)
+ * Access to the private Rethink [sdk-examples](https://github.com/RethinkRobotics/sdk-examples) repository - we are using the baxter_interface and head_control packages from the SDK. Contact [Dave](davetcoleman@gmail.com) if you should have access to this.
+ * Setup Github - the git@github.com urls, below, only work if you have [Setup Github](https://help.github.com/articles/set-up-git) and generated [SSH Keys for Github](https://help.github.com/articles/generating-ssh-keys).
+ * Install wstool package
+    ```
+    sudo apt-get install python-wstool
+    ```
+ * Install gazebo_ros_pkgs from source as detailed on [this tutorial](http://gazebosim.org/wiki/Tutorials/1.9/Installing_gazebo_ros_Packages)
+ * Temporary [issue](https://github.com/ros/ros_comm/issues/283): install [ros_comm](https://github.com/ros/ros_comm) from source in a separate catkin workspace.
 
-## Installation
+## Baxter Installation
 
 * Create a catkin workspace and cd into it:
 
@@ -35,6 +47,15 @@ THIS README IS SPECIFIC FOR GROOVY, SEE hydro-devel BRANCH FOR HYDRO INSTRUCTION
     git clone git@github.com:ros-controls/ros_controllers -b velocity_position_controller
 ```
 
+* Disable duplicate packages
+
+    There is currently a duplication of packages in sdk-examples and baxter_common that must be fixed manually. This issue should be fixed in Rethink's next release of their SDK:
+
+    ```
+    touch sdk-examples/baxter_description/CATKIN_IGNORE
+    touch sdk-examples/baxter_msgs/CATKIN_IGNORE
+    ```
+
 * Install dependencies
 
 ```
@@ -47,6 +68,7 @@ THIS README IS SPECIFIC FOR GROOVY, SEE hydro-devel BRANCH FOR HYDRO INSTRUCTION
 ```
     catkin_make
 ```
+You may need to run this command multiple times if there is a message dependency issue.
 
 ## Bringup Baxter
 
