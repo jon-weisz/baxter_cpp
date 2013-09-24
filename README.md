@@ -44,7 +44,7 @@ The groovy-devel branch is no longer being actively developed but on going devel
     git clone git@github.com:RethinkRobotics/sdk-examples.git -b gazebo_dev
     git clone git@github.com:davetcoleman/baxter_common.git -b dual_parallel_grippers
     git clone git@github.com:davetcoleman/block_grasp_generator.git -b groovy-devel
-    git clone git@github.com:ros-controls/ros_controllers -b velocity_position_controller
+    git clone git@github.com:davetcoleman/ros_controllers -b velocity_position_controller
 ```
 
 * Disable duplicate packages
