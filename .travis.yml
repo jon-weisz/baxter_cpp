@@ -1,0 +1,39 @@
+language:
+  - cpp
+  - python
+python:
+  - "2.7"
+compiler:
+  - gcc
+before_install:
+  # Define some config vars
+  - export ROS_DISTRO=hydro
+  - export CI_SOURCE_PATH=$(pwd)
+  # Bootstrap a minimal ROS installation
+  - git clone https://raw.github.com/jhu-lcsr/ros_ci_tools /tmp/ros_ci_tools && export PATH=/tmp/ros_ci_tools:$PATH
+  - ros_ci_bootstrap
+  # Create isolated workspace based on the ros distro
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+  - mkdir -p ~/ws_isolated/src
+  - cd ~/ws_isolated/src
+  # Link this repo to the src folder
+  - ln -s $CI_SOURCE_PATH .
+  # Download non-debian stuff
+  - wget http://davetcoleman.com/baxter/sdk-examples.zip
+  - unzip sdk-examples.zip
+  - touch sdk-examples/baxter_description/CATKIN_IGNORE
+  - touch sdk-examples/baxter_msgs/CATKIN_IGNORE
+  - git clone https://github.com/davetcoleman/baxter_common.git -b dual_parallel_grippers
+  - git clone https://github.com/davetcoleman/block_grasp_generator.git -b groovy-devel
+  - git clone https://github.com/davetcoleman/ros_controllers -b velocity_position_controller
+  - git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
+  - git clone https://github.com/ros-controls/ros_control.git
+  - git clone https://github.com/ros-controls/control_toolbox.git
+  - git clone https://github.com/ros-controls/realtime_tools.git 
+  - cd ../
+  # Install dependencies for source repos
+  - rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
+install:
+  - catkin_make
+
+
