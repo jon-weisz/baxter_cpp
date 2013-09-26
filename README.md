@@ -19,7 +19,6 @@ The groovy-devel branch is no longer being actively developed but on going devel
     ```
     sudo apt-get install python-wstool
     ```
- * Install gazebo_ros_pkgs from source as detailed on [this tutorial](http://gazebosim.org/wiki/Tutorials/1.9/Installing_gazebo_ros_Packages)
  * Temporary [issue](https://github.com/ros/ros_comm/issues/283): install [ros_comm](https://github.com/ros/ros_comm) from source in a separate catkin workspace.
 
 ## Baxter Installation
@@ -45,6 +44,11 @@ The groovy-devel branch is no longer being actively developed but on going devel
     git clone git@github.com:davetcoleman/baxter_common.git -b dual_parallel_grippers
     git clone git@github.com:davetcoleman/block_grasp_generator.git -b groovy-devel
     git clone git@github.com:davetcoleman/ros_controllers -b velocity_position_controller
+    git clone git@github.com:ros-simulation/gazebo_ros_pkgs.git
+    git clone git@github.com:ros-controls/ros_control.git
+    git clone git@github.com:ros-controls/control_toolbox.git
+    git clone git@github.com:ros-controls/realtime_tools.git 
+    
 ```
 
 * Disable duplicate packages
