@@ -31,7 +31,7 @@ install:
   - git clone https://github.com/davetcoleman/block_grasp_generator.git -b groovy-devel
   - git clone https://github.com/davetcoleman/ros_controllers -b velocity_position_controller
   - git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
-  - git clone https://github.com/ros-controls/ros_control.git
+  - git clone https://github.com/ros-controls/ros_control.git -b no_manifest_xml
   - git clone https://github.com/ros-controls/control_toolbox.git -b no_manifest_xml
   - git clone https://github.com/ros-controls/realtime_tools.git -b no_manifest_xml
   - cd ../
