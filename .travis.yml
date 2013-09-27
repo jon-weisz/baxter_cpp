@@ -15,6 +15,8 @@ before_install:
   - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool
   - sudo rosdep init
   - rosdep update
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+install:
   # Create workspace
   - mkdir -p ~/ros/ws_baxter/src
   - cd ~/ros/ws_baxter/src
@@ -36,7 +38,7 @@ before_install:
   - cd ../
   # Install dependencies for source repos
   - rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
-install:
+script:
   - catkin_make
 
 
