@@ -32,7 +32,6 @@ Unofficial Baxter packages that add-on to the Rethink SDK. It is entirely writte
     ```
     sudo apt-get install python-wstool
     ```
- * Temporary [issue](https://github.com/ros/ros_comm/issues/283): install [ros_comm](https://github.com/ros/ros_comm) from source in a separate catkin workspace.
 
 ## Baxter Installation
 
