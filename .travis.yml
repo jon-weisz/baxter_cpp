@@ -9,14 +9,17 @@ before_install:
   # Define some config vars
   - export ROS_DISTRO=groovy
   - export CI_SOURCE_PATH=$(pwd)
-  # Bootstrap a minimal ROS installation
-  - git clone https://raw.github.com/jhu-lcsr/ros_ci_tools /tmp/ros_ci_tools && export PATH=/tmp/ros_ci_tools:$PATH
-  - ros_ci_bootstrap
-  # Create isolated workspace based on the ros distro
-  - source /opt/ros/$ROS_DISTRO/setup.bash
-  - mkdir -p ~/ws_isolated/src
-  - cd ~/ws_isolated/src
-  # Link this repo to the src folder
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu precise main" > /etc/apt/sources.list.d/ros-latest.list'
+  - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+  - sudo apt-get update
+  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool
+  - sudo rosdep init
+  - rosdep update
+  # Create workspace
+  - mkdir -p ~/ros/ws_baxter/src
+  - cd ~/ros/ws_baxter/src
+  - catkin_init_workspace
+  # Link the repo we are testing to the new workspace
   - ln -s $CI_SOURCE_PATH .
   # Download non-debian stuff
   - wget http://davetcoleman.com/baxter/sdk-examples.zip
