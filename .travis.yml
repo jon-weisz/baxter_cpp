@@ -12,10 +12,9 @@ before_install:
   - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu precise main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update
-  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool
+  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-roscpp
   - sudo rosdep init
   - rosdep update
-  - source /opt/ros/$ROS_DISTRO/setup.bash
 install:
   # Create workspace
   - mkdir -p ~/ros/ws_baxter/src
@@ -39,6 +38,7 @@ install:
   # Install dependencies for source repos
   - rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
 script:
+  - source /opt/ros/$ROS_DISTRO/setup.bash
   - catkin_make
 
 
