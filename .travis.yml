@@ -27,24 +27,29 @@ install:
   - mkdir -p ~/ros/ws_baxter/src
   - cd ~/ros/ws_baxter/src
   - wstool init .
+  - git clone https://github.com/davetcoleman/ros_controllers -b velocity_position_controller
+  - git clone https://github.com/ros-controls/ros_control.git -b no_manifest_xml
+  - git clone https://github.com/ros-controls/control_toolbox.git -b no_manifest_xml
+  - git clone https://github.com/ros-controls/realtime_tools.git -b no_manifest_xml
+  # Install dependencies for source repos
+  - cd ~/ros/ws_baxter/
+  - rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+  - VERBOSE=1 catkin_make DCMAKE_BUILD_TYPE=Debug CXXFLAGS="$CXXFLAGS -O0 --param ggc-min-expand=0 --param ggc-min-heapsize=8192"
   # Link the repo we are testing to the new workspace
+  - cd src/
   - ln -s $CI_SOURCE_PATH .
   # Download non-debian stuff
+  - git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
   - wget http://davetcoleman.com/baxter/sdk-examples.zip
   - unzip sdk-examples.zip
   - touch sdk-examples/baxter_description/CATKIN_IGNORE
   - touch sdk-examples/baxter_msgs/CATKIN_IGNORE
   - git clone https://github.com/davetcoleman/baxter_common.git -b dual_parallel_grippers
   - git clone https://github.com/davetcoleman/block_grasp_generator.git -b groovy-devel
-  - git clone https://github.com/davetcoleman/ros_controllers -b velocity_position_controller
-  - git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
-  - git clone https://github.com/ros-controls/ros_control.git -b no_manifest_xml
-  - git clone https://github.com/ros-controls/control_toolbox.git -b no_manifest_xml
-  - git clone https://github.com/ros-controls/realtime_tools.git -b no_manifest_xml
-  - cd ../
   # Install dependencies for source repos
+  - cd ~/ros/ws_baxter/
   - rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
-script:
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - VERBOSE=1 catkin_make DCMAKE_BUILD_TYPE=Debug CXXFLAGS="$CXXFLAGS -O0 --param ggc-min-expand=0 --param ggc-min-heapsize=8192"
 
