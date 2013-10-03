@@ -27,9 +27,9 @@ install:
   - cd ~/ros/ws_baxter/src
   - wstool init .
   - git clone https://github.com/davetcoleman/ros_controllers -b velocity_position_controller
-  - git clone https://github.com/ros-controls/ros_control.git -b no_manifest_xml
-  - git clone https://github.com/ros-controls/control_toolbox.git -b no_manifest_xml
-  - git clone https://github.com/ros-controls/realtime_tools.git -b no_manifest_xml
+  - git clone https://github.com/ros-controls/ros_control.git
+  - git clone https://github.com/ros-controls/control_toolbox.git
+  - git clone https://github.com/ros-controls/realtime_tools.git
   # Install dependencies for source repos
   - cd ~/ros/ws_baxter/
   - rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
