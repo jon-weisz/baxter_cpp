@@ -1,7 +1,7 @@
 /*********************************************************************
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2013, CU Boulder
+ *  Copyright (c) 2014, CU Boulder
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -49,10 +49,9 @@
 // Grasp generation
 #include <moveit_simple_grasps/simple_grasps.h>
 #include <moveit_visual_tools/visual_tools.h> // simple tool for showing graspsp
-
-// Baxter specific properties
 #include <moveit_simple_grasps/grasp_data.h>
-#include <baxter_pick_place/custom_environment5.h>
+
+///#include <baxter_pick_place/custom_environment5.h>
 
 namespace baxter_pick_place
 {
@@ -105,7 +104,7 @@ public:
     move_group_->setPlanningTime(30.0);
 
     // Load grasp generator
-    if (!grasp_data_.loadRobotGraspData(nh, arm_))
+    if (!grasp_data_.loadRobotGraspData(nh, ee_group_name_))
       ros::shutdown();
 
     // Load the Robot Viz Tools for publishing to rviz
@@ -438,7 +437,7 @@ public:
 
 int main(int argc, char **argv)
 {
-  ros::init (argc, argv, "baxter_pick_place");
+  ros::init (argc, argv, "baxter_block_pick_place");
   ros::AsyncSpinner spinner(1);
   spinner.start();
 
